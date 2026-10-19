@@ -21,6 +21,25 @@ const containerActiveClass: Record<VoteType, string> = {
     DOWN: "bg-vote-down text-white",
 }
 
+// Inverted white chip on the voted arrow; dark: variants needed to beat the ghost variant's dark hover
+const activeButtonClass: Record<VoteType, string> = {
+    UP: "bg-white text-vote-up hover:bg-white hover:text-vote-up dark:hover:bg-white",
+    DOWN: "bg-white text-vote-down hover:bg-white hover:text-vote-down dark:hover:bg-white",
+}
+
+// Unvoted hover previews the vote color — ghost's accent hover is invisible on the muted pill
+const idleButtonClass: Record<VoteType, string> = {
+    UP: "hover:bg-vote-up/25 hover:text-vote-up dark:hover:bg-vote-up/25",
+    DOWN: "hover:bg-vote-down/40 hover:text-vote-down dark:hover:bg-vote-down/40",
+}
+
+const getButtonClass = (type: VoteType, currentUserVote: VoteType | null) => {
+    if (currentUserVote === null) return idleButtonClass[type]
+    if (currentUserVote === type) return activeButtonClass[type]
+    // Faded so the active arrow stands out, restored on hover since it's still clickable
+    return "opacity-50 hover:opacity-100 hover:bg-white/20 hover:text-white dark:hover:bg-white/20"
+}
+
 const computeNewState = (
     prev: { score: number; currentUserVote: VoteType | null },
     clicked: VoteType
@@ -72,7 +91,7 @@ export const VoteButtons = ({ score, currentUserVote, onVote, disabled = false }
             <Button
                 variant="ghost"
                 size="icon"
-                className={`h-6 w-6 rounded-full ${voteState.currentUserVote ? "hover:bg-white/20 hover:text-white" : ""} ${voteState.currentUserVote === 'UP' ? 'bg-neutral-600/30' : ''}`}
+                className={`h-6 w-6 rounded-full ${getButtonClass("UP", voteState.currentUserVote)}`}
                 onClick={() => handleVote("UP")}
                 disabled={isPending || disabled}
                 aria-label="Upvote"
@@ -85,7 +104,7 @@ export const VoteButtons = ({ score, currentUserVote, onVote, disabled = false }
             <Button
                 variant="ghost"
                 size="icon"
-                className={`h-6 w-6 rounded-full ${voteState.currentUserVote ? "hover:bg-white/20 hover:text-white" : ""} ${voteState.currentUserVote === 'DOWN' ? 'bg-neutral-600/30' : ''}`}
+                className={`h-6 w-6 rounded-full ${getButtonClass("DOWN", voteState.currentUserVote)}`}
                 onClick={() => handleVote("DOWN")}
                 disabled={isPending || disabled}
                 aria-label="Downvote"

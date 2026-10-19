@@ -31,6 +31,7 @@ pnpm ui:add <component> # Add a shadcn/ui component
 - `lib/auth.ts` — Server-side better-auth config (magic link plugin, rate limiting, Prisma adapter). In dev, magic link URLs are printed to the console instead of being emailed.
 - `lib/authClient.ts` — Client-side better-auth methods (`signIn`, `signOut`, `useSession`). Uses `magicLinkClient` plugin; `signIn.magicLink()` handles both sign-in and sign-up.
 - `lib/prisma.ts` — Prisma client singleton using `@prisma/adapter-pg`
+- `instrumentation-client.ts` — Dev-only: loads `react-grab`. The user may paste its output (`in Component (at path/file.tsx:line:col)`) to point at UI elements
 - `lib/schemas/AuthSchemas.ts` — Zod validation schemas for auth forms
 - `lib/proxies/` — (for server action proxies)
 - `prisma/schema.prisma` — Full data model

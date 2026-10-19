@@ -40,8 +40,8 @@ const LandingPage = async () => {
                 <Image
                     src="/logo_light.svg"
                     alt="Kosmo"
-                    width={64}
-                    height={64}
+                    width={96}
+                    height={96}
                     style={{ height: 'auto' }}
                     className="dark:hidden mb-6"
                     priority
@@ -49,8 +49,8 @@ const LandingPage = async () => {
                 <Image
                     src="/logo_dark.svg"
                     alt="Kosmo"
-                    width={64}
-                    height={64}
+                    width={96}
+                    height={96}
                     style={{ height: 'auto' }}
                     className="hidden dark:block mb-6"
                     priority

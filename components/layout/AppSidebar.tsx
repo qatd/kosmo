@@ -57,17 +57,17 @@ export const AppSidebar = ({ username, userName, userImage }: Props) => {
                 <Image
                     src="/logo_light.svg"
                     alt="Kosmo"
-                    width={32}
-                    height={32}
-                    className="size-8 dark:hidden"
+                    width={40}
+                    height={40}
+                    className="size-8 sm:size-10 dark:hidden"
                     priority
                 />
                 <Image
                     src="/logo_dark.svg"
                     alt="Kosmo"
-                    width={32}
-                    height={32}
-                    className="size-8 hidden dark:block"
+                    width={40}
+                    height={40}
+                    className="size-8 sm:size-10 hidden dark:block"
                     priority
                 />
                 <span className="hidden xl:block font-bold text-lg">Kosmo</span>
