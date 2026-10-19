@@ -27,8 +27,14 @@ const activeButtonClass: Record<VoteType, string> = {
     DOWN: "bg-white text-vote-down hover:bg-white hover:text-vote-down dark:hover:bg-white",
 }
 
+// Unvoted hover previews the vote color — ghost's accent hover is invisible on the muted pill
+const idleButtonClass: Record<VoteType, string> = {
+    UP: "hover:bg-vote-up/25 hover:text-vote-up dark:hover:bg-vote-up/25",
+    DOWN: "hover:bg-vote-down/40 hover:text-vote-down dark:hover:bg-vote-down/40",
+}
+
 const getButtonClass = (type: VoteType, currentUserVote: VoteType | null) => {
-    if (currentUserVote === null) return ""
+    if (currentUserVote === null) return idleButtonClass[type]
     if (currentUserVote === type) return activeButtonClass[type]
     // Faded so the active arrow stands out, restored on hover since it's still clickable
     return "opacity-50 hover:opacity-100 hover:bg-white/20 hover:text-white dark:hover:bg-white/20"
